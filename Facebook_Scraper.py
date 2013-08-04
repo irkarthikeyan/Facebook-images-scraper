@@ -32,11 +32,11 @@ def extract_from_ajax(download,output,load_url,last_fbid):
     connection = requests.get(ajaxurl)
     
     obj = connection.content
-    res = re.findall("http:\\\\/\\\\/[a-z]+-[a-z]+.[a-z]+.[a-z]+.[a-z]+.\\\\/[a-z]+-[a-z]+-[a-z0-9]+\\\\/[a-z0-9]+\\\\/[0-9]+_[0-9]+_[0-9]+_[a-z]+.jpg",obj)
-    res2 = re.findall("https:\\\\/\\\\/[a-z]+-[a-z]+-[a-z]+-[a-z]+.[a-z]+.[a-z]+\\\\/[a-z]+-[a-z]+-[a-z0-9]+\\\\/[a-z0-9]+\\\\/[0-9]+_[0-9]+_[0-9]+_[a-z]+.jpg",obj)
+    pattern_one = re.findall("http:\\\\/\\\\/[a-z]+-[a-z]+.[a-z]+.[a-z]+.[a-z]+.\\\\/[a-z]+-[a-z]+-[a-z0-9]+\\\\/[a-z0-9]+\\\\/[0-9]+_[0-9]+_[0-9]+_[a-z]+.jpg",obj)
+    pattern_two = re.findall("https:\\\\/\\\\/[a-z]+-[a-z]+-[a-z]+-[a-z]+.[a-z]+.[a-z]+\\\\/[a-z]+-[a-z]+-[a-z0-9]+\\\\/[a-z0-9]+\\\\/[0-9]+_[0-9]+_[0-9]+_[a-z]+.jpg",obj)
     nextLinks = [];
     cnt = 1
-    for i in res:
+    for i in pattern_one:
         link = ""
         for j,c in enumerate(i):
             if c != '\\':
@@ -46,7 +46,7 @@ def extract_from_ajax(download,output,load_url,last_fbid):
         nextLinks.append(link)
         print link
     
-    for i in res2:
+    for i in pattern_two:
         link = ""
         for j,c in enumerate(i):
             if c != '\\':
