@@ -11,16 +11,22 @@ from threading import Thread
 import httplib
 import requests
 import re
+
+#Function to start the thread for downloading images in parellel
+
 def download_parellel(function,images,output):
     for i in images:
         Thread(target=function,args=(i,output,)).start()
     
+
+#Function that downloads the image
 
 def download(image,output):
     filename = image.split("/")[-1]
     outpath = os.path.join(output, filename)   
     urlretrieve(image, outpath)
        
+#give an ajax request to a URL so that we get all the images in that page to download
 
 def extract_from_ajax(download,output,load_url,last_fbid):
     url = "http://graph.facebook.com/"+load_url
@@ -88,6 +94,7 @@ def main(url,output,load_url):
     ret = lastImage.split("_");
     lastid = extract_from_ajax(download,output,load_url,ret[-3])
     
+    #Repeat ajax request till the last image
     while lastid:
         lastid = extract_from_ajax(download,output,load_url,lastid)
     
