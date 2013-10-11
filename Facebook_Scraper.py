@@ -1,3 +1,4 @@
+#Testing git
 #!/usr/bin/env python
 from bs4 import BeautifulSoup,Comment
 import urlparse
@@ -102,7 +103,7 @@ def main(url,output,load_url):
 if __name__ == "__main__":
     url = sys.argv[-1]
     #Change your location
-    output = "/Users/rkarth/downloads" 
+    output = "/Users/rkarth/downloads/Nazriya" 
     all_parts = url.split("/")
     load_url = all_parts[-2]
     main(url, output,load_url)
