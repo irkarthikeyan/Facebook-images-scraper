@@ -13,7 +13,7 @@ import requests
 import re
 
 #Function to start the thread for downloading images in parellel
-
+#comment
 def download_parellel(function,images,output):
     for i in images:
         Thread(target=function,args=(i,output,)).start()
